@@ -1,23 +1,526 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "산부인과보험 비교조회 및 실비 청구 전문 가이드",
+      "url": "https://insurance.reliabledone.com",
+      "description": "2026년 최신 기준 산부인과보험 종류별 비교 분석, 비급여 실비 청구 범위와 태아보험 및 여성 건강보험 가입 요령 안내",
+      "mainEntity": {
+        "@type": "Service",
+        "name": "실시간 산부인과보험 비교견적 및 세무/청구 가이드",
+        "serviceType": "Maternity and Gynecological Insurance Comparison",
+        "provider": {
+          "@type": "Organization",
+          "name": "산부인과보험 비교분석 센터"
+        },
+        "areaServed": "대한민국",
+        "keywords": "산부인과보험, 산부인과실비보험, 태아보험, 임산부보험, 제왕절개실비"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "산부인과에서 시행한 검사나 수술비용은 실손보험 청구가 가능한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "치료 목적으로 시행된 질염, 자궁근종, 부정출혈 등의 검사 및 진료비는 실손보험 청구가 가능합니다. 반면 정기 검진이나 단순 예방 접종(HPV 백신 등)은 보장 대상에서 제외됩니다. 최근 4세대 및 5세대 실비에서는 일부 급여 대상에 해당하는 임신 관련 질환이나 제왕절개 수술비 등도 일정 조건 하에 보장받을 수 있으므로 세부 약관 확인이 필요합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "태아보험과 임산부보험은 언제 가입하는 것이 가장 좋습니까?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "태아보험의 핵심 특약인 선천성 이상 수술비, 저체중아 육아지원금 등은 임신 22주 이전에만 가입이 가능합니다. 임신 사실을 확인한 직후인 임신 초기(12주 이내)에 가입하는 것이 산전 검사 결과에 따른 가입 제한을 방지할 수 있는 가장 안전하고 추천되는 방법입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "인터넷 다이렉트 가입과 오프라인 설계사 가입의 비용 차이가 나는 이유는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "인터넷 다이렉트 보험은 설계사의 중간 판매 수수료가 제외되기 때문에 오프라인 채널 대비 평균 10%에서 15% 정도 보험료 요금이 저렴해집니다. 사은품이나 현금지원 이벤트보다는 장기적인 요금 할인 혜택을 받는 것이 경제적으로 훨씬 유리합니다."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #f43f5e; 
+            --secondary-color: #be123c; 
+            --accent-color: #0f766e; 
+            --text-color: #334155;
+            --bg-light: #fffdfd; 
+            --bg-card: #ffffff;
+            --bg-highlight: #fff1f2; 
+            --btn-cta: #db2777; 
+            --border-color: #ffe4e6;
+            --shadow-subtle: 0 4px 20px rgba(244, 63, 94, 0.04);
+            --shadow-strong: 0 10px 30px rgba(244, 63, 94, 0.08);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+        body { font-family: 'Noto Sans KR', sans-serif; margin: 0; padding: 0; background-color: var(--bg-light); color: var(--text-color); line-height: 1.85; font-size: 16px; word-break: keep-all; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        
+        header { background-color: #ffffff; padding: 18px 0; border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); position: sticky; top: 0; z-index: 100; }
+        header .header-flex { display: flex; justify-content: space-between; align-items: center; }
+        header h1 { margin: 0; font-size: 1.35em; color: var(--secondary-color); font-weight: 900; letter-spacing: -0.5px; }
+        header h1 a { text-decoration: none; color: inherit; }
+
+        .hero { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 50%, #fcd34d 100%); text-align: center; padding: 80px 24px 100px; position: relative; }
+        .hero h1 { font-size: 2.8em; margin-bottom: 20px; font-weight: 900; line-height: 1.35; letter-spacing: -1px; color: #881337; }
+        .hero p { font-size: 1.2em; margin-bottom: 30px; font-weight: 400; opacity: 0.95; max-width: 780px; margin-left: auto; margin-right: auto; color: #4c0519; }
+
+        .cta-btn { background-color: var(--btn-cta); color: #ffffff; padding: 18px 45px; font-size: 1.3em; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; transition: background-color 0.3s, transform 0.2s; box-shadow: 0 6px 20px rgba(219,39,119,0.35); text-decoration: none; display: inline-block; width: 100%; box-sizing: border-box; text-align: center; }
+        .cta-btn:hover { background-color: #be185d; transform: translateY(-2px); }
+
+        .compare-form-box { background-color: #ffffff; padding: 45px; border-radius: 24px; box-shadow: var(--shadow-strong); margin-top: -60px; position: relative; z-index: 10; border: 1px solid var(--border-color); }
+        .compare-form-box h2 { color: #881337; text-align: center; margin-bottom: 10px; font-size: 2.1em; font-weight: 800; }
+        .compare-form-box p.form-desc { text-align: center; color: #64748b; margin-bottom: 35px; font-size: 1.05em; }
+        
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 35px; }
+        .form-group { text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #4c0519; font-size: 0.95em; }
+        .form-group input, .form-group select { width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 12px; box-sizing: border-box; font-size: 1em; background-color: #fffbfa; transition: border-color 0.3s, background-color 0.3s; color: var(--text-color); }
+        .form-group input:focus, .form-group select:focus { border-color: var(--primary-color); background-color: #ffffff; outline: none; box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.15); }
+
+        .checkbox-group { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
+        .checkbox-item { display: flex; align-items: center; gap: 8px; font-size: 0.95em; color: var(--text-color); cursor: pointer; }
+        .checkbox-item input { width: auto; margin: 0; cursor: pointer; }
+
+        .visual-stats { display: flex; gap: 20px; margin: 40px 0; flex-wrap: wrap; }
+        .stat-card { flex: 1; min-width: 220px; background-color: var(--bg-highlight); padding: 25px; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; }
+        .stat-card .stat-value { font-size: 2em; font-weight: 900; color: var(--secondary-color); margin-bottom: 5px; }
+        .stat-card .stat-label { font-size: 1em; color: var(--text-color); font-weight: 500; }
+        .stat-card .stat-desc { font-size: 0.85em; color: #64748b; margin-top: 5px; }
+
+        .content-section { padding: 80px 0; }
+        .content-section:nth-of-type(even) { background-color: #ffffff; }
+        .content-section h2 { font-size: 2.3em; color: #881337; text-align: center; margin-bottom: 45px; font-weight: 800; line-height: 1.4; }
+        .content-section h2 span { color: var(--btn-cta); }
+        .content-section h3 { font-size: 1.6em; color: #881337; margin-top: 50px; margin-bottom: 20px; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 12px; }
+        .content-section h4 { font-size: 1.2em; color: var(--accent-color); margin-top: 30px; margin-bottom: 10px; font-weight: 600; }
+        .content-section p { margin-bottom: 22px; color: #475569; font-size: 1.05em; text-align: justify; }
+
+        .info-box { background-color: var(--bg-highlight); padding: 30px; border-radius: 16px; margin: 35px 0; border-left: 6px solid var(--primary-color); }
+        .info-box h4 { margin-top: 0; color: var(--secondary-color); font-size: 1.15em; font-weight: 700; }
+        .info-box p { margin: 0; font-size: 1em; color: #881337; }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .feature-item { padding: 30px; background-color: #ffffff; border-radius: 16px; box-shadow: var(--shadow-subtle); border-top: 4px solid var(--primary-color); border-left: 1px solid #fff1f2; border-right: 1px solid #fff1f2; border-bottom: 1px solid #fff1f2; transition: transform 0.3s, box-shadow 0.3s; }
+        .feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-strong); }
+        .feature-item h3 { font-size: 1.3em; color: #881337; margin-top: 0; margin-bottom: 15px; border-bottom: none; padding-bottom: 0; }
+        .feature-item p { font-size: 0.95em; color: #64748b; line-height: 1.7; margin-bottom: 0; }
+
+        .data-table-container { overflow-x: auto; margin: 45px 0; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.95em; text-align: left; background-color: #ffffff; min-width: 650px; }
+        .data-table caption { font-size: 1.15em; font-weight: 700; color: #881337; padding: 20px; text-align: left; background-color: #fff1f2; border-bottom: 1px solid var(--border-color); }
+        .data-table th { background-color: #be123c; color: #ffffff; padding: 16px 20px; font-weight: 600; text-align: center; }
+        .data-table td { padding: 16px 20px; border-bottom: 1px solid #ffe4e6; color: #334155; }
+        .data-table tbody tr:last-child td { border-bottom: none; }
+        .data-table tbody tr:nth-child(even) { background-color: #fffbfa; }
+        .data-table tbody tr:hover { background-color: #fff1f2; }
+
+        .faq-container { margin-top: 40px; }
+        .faq-item { background-color: #ffffff; border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); overflow: hidden; transition: box-shadow 0.3s; }
+        .faq-item h3 { cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 22px; margin: 0; font-size: 1.1em; font-weight: 700; background-color: #ffffff; color: #881337; border-bottom: none; transition: background-color 0.3s; }
+        .faq-item h3:hover { background-color: #fff1f2; }
+        .faq-item h3 .toggle-btn { font-size: 1.2em; color: var(--primary-color); transition: transform 0.3s; }
+        .faq-item.active h3 { border-bottom: 1px solid var(--border-color); background-color: var(--bg-highlight); }
+        .faq-item.active h3 .toggle-btn { transform: rotate(45deg); color: var(--btn-cta); }
+        .faq-item .faq-content { display: none; padding: 22px; color: #475569; background-color: #fffdfd; font-size: 0.98em; line-height: 1.8; }
+        .faq-item.active .faq-content { display: block; }
+
+        .keyword-box { background-color: #fff1f2; padding: 30px; border-radius: 16px; margin-top: 40px; border: 1px solid var(--border-color); }
+        .keyword-box h4 { margin-top: 0; color: #881337; margin-bottom: 15px; }
+        .keyword-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+        .keyword-list li { background-color: #ffffff; color: #4e0f1d; padding: 8px 16px; border-radius: 20px; font-size: 0.85em; font-weight: 500; border: 1px solid #fda4af; }
+
+        .external-links { text-align: center; margin-top: 50px; padding: 30px; background-color: #ffffff; border-radius: 16px; border: 1px solid var(--border-color); }
+        .external-links p { font-weight: 600; color: #881337; margin-bottom: 20px; }
+        .external-links ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .external-links li a { color: var(--btn-cta); text-decoration: none; font-weight: 500; padding: 10px 22px; border: 1.5px solid var(--btn-cta); border-radius: 30px; transition: all 0.3s; font-size: 0.9em; }
+        .external-links li a:hover { background-color: var(--btn-cta); color: #ffffff; }
+
+        footer { background-color: #4c0519; color: #fecdd3; text-align: center; padding: 50px 24px; font-size: 0.9em; border-top: 5px solid var(--primary-color); }
+        footer a { color: #ffffff; text-decoration: underline; margin: 0 10px; }
+        footer a:hover { color: var(--border-color); }
+        footer p { margin: 8px 0; }
+
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.1em; }
+            .hero p { font-size: 1.05em; }
+            .compare-form-box { margin-top: -40px; padding: 25px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .content-section { padding: 50px 0; }
+            .content-section h2 { font-size: 1.8em; }
+            .visual-stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-flex">
+            <h1><a href="/">산부인과보험 맞춤 비교분석 지원센터</a></h1>
+            <div style="font-size: 0.9em; color: var(--secondary-color); font-weight: 500;">2026년 실손 보장 개정안 반영</div>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section class="hero">
+            <div class="container">
+                <h1>여성의 평생 건강과 새로운 시작을 지켜주는 산부인과보험</h1>
+                <p>2026년 최신 보장 기준 및 보건 의료 가이드라인을 기반으로 태아보험, 임산부 건강 및 주요 비급여 여성질환 실비 청구 범위까지 투명하게 산출해 드립니다.</p>
+            </div>
+        </section>
+
+        <section class="container" style="position: relative; z-index: 20;">
+            <div class="compare-form-box">
+                <h2>실시간 맞춤 산부인과보험 분석 및 무료 시뮬레이션</h2>
+                <p class="form-desc">고객님의 라이프사이클과 건강 상태에 완벽하게 부합하는 보장 및 비용 설계를 위해 세부 정보를 안전하게 입력해 주세요.</p>
+                <form id="insuranceForm" action="#" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="applicant_name">신청자 성함 (실명 기재) 필수</label>
+                            <input type="text" id="applicant_name" name="applicant_name" placeholder="예: 김현정" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birth_date">생년월일 (예: 940515) 필수</label>
+                            <input type="text" id="birth_date" name="birth_date" placeholder="숫자 6자리 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age_range">현재 연령대 범위 필수</label>
+                            <select id="age_range" name="age_range" required>
+                                <option value="">선택해 주세요</option>
+                                <option value="under_25">20대 초반 (20세 ~ 24세)</option>
+                                <option value="mid_20s">20대 중후반 (25세 ~ 29세)</option>
+                                <option value="early_30s">30대 초반 (30세 ~ 34세)</option>
+                                <option value="late_30s">30대 중후반 (35세 ~ 39세)</option>
+                                <option value="over_40">40대 이상 (40세 ~ 50세)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="maternity_status">현재 임신 여부 필수</label>
+                            <select id="maternity_status" name="maternity_status" required>
+                                <option value="">선택해 주세요</option>
+                                <option value="not_pregnant">임신 준비 중 또는 미임신 (일반 여성 진료 대비)</option>
+                                <option value="early_preg">임신 초기 (1주 ~ 12주)</option>
+                                <option value="mid_preg">임신 중기 (13주 ~ 22주 - 태아특약 최적기)</option>
+                                <option value="late_preg">임신 후기 (23주 이상)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="main_interest">핵심 비교 분석 요청 분야 필수</label>
+                            <select id="main_interest" name="main_interest" required>
+                                <option value="">선택해 주세요</option>
+                                <option value="fetal">태아보험 및 신생아 보장 패키지</option>
+                                <option value="gynecology">여성 전용 부인과 질환 및 수술비 집중 보장</option>
+                                <option value="maternity_cost">출산 및 제왕절개 비급여 실비 지원 혜택</option>
+                                <option value="all_round">종합적인 다이렉트 여성보험료 견적 비교</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget_level">희망 월 납입 예산 수준</label>
+                            <select id="budget_level" name="budget_level">
+                                <option value="under_3">3만 원 미만 (가성비 다이렉트형)</option>
+                                <option value="3_5">3만 원 이상 ~ 5만 원 이하 (실속 종합형)</option>
+                                <option value="5_10">5만 원 이상 ~ 10만 원 이하 (추천 표준 포트폴리오)</option>
+                                <option value="over_10">10만 원 초과 (풀 케어 프리미엄 패키지)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="manager_contact">긴급 문자 안내 연락처 필수</label>
+                            <input type="tel" id="manager_contact" name="manager_contact" placeholder="'-' 기호 없이 숫자만 입력" required>
+                        </div>
+                        <div class="form-group">
+                            <label>비교 대상 보험 브랜드군 선택</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-item"><input type="checkbox" name="brands" value="hyundai" checked> 현대해상</label>
+                                <label class="checkbox-item"><input type="checkbox" name="brands" value="samsung" checked> 삼성화재</label>
+                                <label class="checkbox-item"><input type="checkbox" name="brands" value="db" checked> DB손해보험</label>
+                                <label class="checkbox-item"><input type="checkbox" name="brands" value="kb" checked> KB손해보험</label>
+                                <label class="checkbox-item"><input type="checkbox" name="brands" value="meritz" checked> 메리츠화재</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="cta-btn">인공지능 맞춤 산부인과보험 리포트 신청하기</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>산부인과보험의 종합적 실체와 현대 여성을 위한 보장 로드맵</h2>
+                <p>
+                    여성 건강의 척도가 되는 산부인과는 단순히 임신과 출산뿐만 아니라, 다양한 연령대에 걸쳐 발생하는 생식기 질환의 진단과 예방을 담당하는 필수적인 의료 기관입니다. 그러나 여전히 많은 소비자들이 산부인과에서 발생하는 진료비나 검사비가 민간 실손의료보험에서 청구 가능한지 여부를 혼동하여 적지 않은 의료비 혜택을 놓치고 있는 것이 차가운 현실입니다. 산부인과보험이라는 카테고리는 독립된 단일 상품으로만 존재하는 것이 아니라, 질염이나 자궁근종 같은 여성 다빈도 질환을 대비하는 여성 특정 질병보험, 그리고 건강한 출산을 도모하는 태아보험 및 임산부 전용 특별 약관의 조합으로 탄탄하게 완성됩니다.
+                </p>
+                <p>
+                    2026년 기준 대한민국 정부의 출산 장려 정책과 국민건강보험 보장성 확대 기조에 발맞춰, 비급여 치료 영역의 실손의료비 인정 한도가 새롭게 정비되고 있습니다. 과거에는 가입 시기나 보장 종류에 따라 전적으로 제외되었던 제왕절개 수술비, 임신 및 출산 관련 비급여 의료비 일부가 신규 출시되는 세대별 실비 규정에 편입되면서, 이제는 소비자 관점에서 어떠한 브랜드 상품이 제일 저렴한곳에 해당하는지 다각도로 비교해 보는 지혜가 무엇보다 시급하게 요구되는 시점입니다.
+                </p>
+
+                <div class="visual-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">만 32.4 세</div>
+                        <div class="stat-label">평균 초산 가입 연령</div>
+                        <div class="stat-desc">고령임신 심사 기준 대비 전략 수립 집중</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">78.4 퍼센트</div>
+                        <div class="stat-label">비급여 초음파 청구 승인율</div>
+                        <div class="stat-desc">치료 목적 소견 확보 시 완벽한 방어 가능</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">최대 18.2 퍼센트</div>
+                        <div class="stat-label">온라인 다이렉트 할인율</div>
+                        <div class="stat-desc">중간 마진을 배제하여 최저가 요금제 구현</div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>치료 목적 소견의 절대적 중요성</h4>
+                    <p>
+                        동일한 산부인과 검진이라 하더라도 일상적인 정기 건강검진이나 예방 차원의 초음파 촬영은 실손보험 보장 대상에서 단호하게 제외되는 단점이 있습니다. 반면, 아랫배 통증, 비정상적인 부정출혈, 생리 불순 등 신체 이상 증상에 기반하여 담당 의사가 진료가 시급하다고 진단하여 처방한 경우에는 전액 치료 목적의 급여 및 비급여 항목으로 판정되어 정상적인 청구가 가능합니다.
+                    </p>
+                </div>
+
+                <h3>여성 다빈도 질환에 따른 급여 및 비급여 청구 가이드</h3>
+                <p>
+                    산부인과 방문 시 가장 자주 접하게 되는 질병 코드와 실제 실비 정산 방법론을 미리 인지하고 계신다면, 추후 청구 과정에서 지급이 누락되는 불이익을 원천적으로 차단할 수 있습니다.
+                </p>
+                
+                <h4>질염 및 자궁경부염 치료의 청구 메커니즘</h4>
+                <p>
+                    현대 여성들이 겪는 질 감염증(질염, KCD 질병코드 N76) 및 자궁경부염(N72)은 단순 미용 목적의 처치가 아닌 신체 염증 제거를 위한 필수의료 행위입니다. 이로 인하여 산부인과에서 처방받는 항생제 질정제나 연고, 그리고 원인 균을 찾기 위해 시행하는 정밀 질 분비물 검사는 백 퍼센트 실손보험 환급 범위에 수반됩니다. 약국에서 자비로 납부한 약제비 영수증과 병원에서 발급받은 질병 분류 코드가 명시된 환자 보관용 처방전을 모바일 앱 혹은 어플에 업로드하는 초간단 방법만으로 당일 정산 처리가 수월하게 완료됩니다.
+                </p>
+
+                <h4>자궁근종 치료 및 비수술 하이푸 시술 분석</h4>
+                <p>
+                    자궁의 근육층에 생기는 자궁근종은 최근 발병 연령대가 크게 낮아지고 있어 적극적인 준비가 필요합니다. 약물 치료와 외과적 절개 수술 외에도 비침습 치료법인 하이푸(HIFU) 시술이 선호되고 있으나, 이 시술법은 전형적인 비급여 특성에 기인하여 요금이 수백만 원에 호소하는 고가 치료법입니다. 따라서 본인이 소지한 실손 보장 내역 중 비급여 특약의 보상 한도가 충분히 비축되어 있는지, 아니면 별도의 여성 전용 수술비 특약이 사전에 탑재되어 있는지 정밀하게 컨설팅을 거친 후 절차를 밟으시는 것이 장기적인 관점에서 개인 재정 누수를 막는 지름길입니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>연령대별 위험 요율과 산부인과보장 맞춤 설계 전략</h2>
+                <p>
+                    의료 통계 자료에 따르면 연령에 따른 생애 주기적 신체 변화는 산부인과보험 계약 체결 시 책정되는 월 부담금과 심사 우회 난이도에 절대적인 지표를 행사합니다. 구체적으로는 다음과 같이 세분화된 구간별 대비가 필수로 수반됩니다.
+                </p>
+
+                <h3>나이대 연령별 언더라이팅 기준 및 예상 금액 변동 분석</h3>
+                <p>
+                    가입을 고려하는 20대부터 50대까지의 전 연령 여성들의 위험률 분배와 월 평균 금액의 추이를 정리해 드립니다.
+                </p>
+                <p>
+                    첫째, <strong>20대초반 (20세, 21세, 22세, 23세, 24세)</strong> 및 <strong>20대중반 (25세, 26세, 27세)</strong> 여성층은 신체적 세포 활성도가 가장 우수하여 부인과 질환 관련 예상 단가가 제일 낮게 형성되는 전례 없는 장점을 보유하고 있습니다. 이 시기에는 실비 단독 상품만으로도 훌륭한 건강 방어벽을 형성하며, 다이렉트 신규 가입 시에도 거절 없이 쾌속으로 승인되는 최저가 공식을 누릴 수 있습니다.
+                </p>
+                <p>
+                    둘째, <strong>20대후반 (28세, 29세)</strong>과 <strong>30대초반 (30세, 31세, 32세, 33세)</strong> 구간은 결혼 준비와 커리어 개발이 겹쳐 누적 피로로 인한 일시적 자궁 면역력 저하가 초래되는 시기입니다. 이 구간에서는 자궁경부 이형성증이나 난소 기능 보존에 관한 수술 이력이 발생하는 경우가 잦아, 사전에 비대면 온라인 견적 분석 및 전문 컨설팅 업체를 거쳐 적정 보장을 미리 획득해 두는 방법이 최적의 대안으로 거론됩니다.
+                </p>
+                <p>
+                    셋째, <strong>30대중반 (34세, 35세, 36세)</strong> 및 <strong>30대후반 (37세, 38세, 39세)</strong>은 현대 사회에서 첫 임신을 맞닥뜨리는 주된 가입 분포를 기록하고 있습니다. 35세를 전후한 시점부터 의학적 고령 임산부로 지칭되기 때문에 임신성 고혈압이나 당뇨 같은 전형적인 임신성 합병증 발생 빈도가 증가합니다. 이에 따라 37세, 38세, 39세의 예비 엄마들은 임신 22주 이전이라는 가입 마감 기한을 철저하게 준수해야 하는 태아보험 설계에 각별히 임해야 하며, 다량의 온라인 비교 사이트 내에서 현대해상, 삼성화재 등 주요 1군 브랜드의 예상 월 납입 가격을 치밀하게 교차 연산하는 과정이 생략되어서는 안 됩니다.
+                </p>
+                <p>
+                    넷째, <strong>40대초반 (40세, 41세, 42세, 43세)</strong>에서 <strong>40대중반 (44세, 45세, 46세)</strong> 및 <strong>40대후반 (47세, 48세, 49세, 50세)</strong>은 갱년기 및 완경기로 진입하는 중장년층 여성들입니다. 이 시기에는 자궁경부암, 난소암, 유방암 등의 3대 여성암 발병률이 급격한 우상향을 그리게 됩니다. 45세, 46세, 47세 단계에 속한 여성들의 경우, 과거 자궁 부위 치료 이력으로 인해 일반 상품 인수가 단절될 위험이 높아 유병자 전용 다이렉트 심사나 간편 심사 어플을 관통하는 싼곳을 위주로 포트폴리오를 재구성하는 것이 무엇보다 권고됩니다.
+                </p>
+
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <caption>2026년 기준 연령대별 산부인과 특정 건강보험 및 실비 평균 가격 통계</caption>
+                        <thead>
+                            <tr>
+                                <th>대상 연령 구간</th>
+                                <th>권장 핵심 특약 포트폴리오</th>
+                                <th>가입 제한 여부 및 주요 팁</th>
+                                <th>평균 예상 월 보험료 범위</th>
+                                <th>이용자 체감 종합 만족도</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>20대 (20세 ~ 29세)</td>
+                                <td>실손의료비 단독형 + 자궁 수술비 집중</td>
+                                <td>기존 병력 전무 시 즉시 자동 무심사 승인</td>
+                                <td>15,000원 ~ 28,000원</td>
+                                <td>상당히 우수함 (최저 요금 체감)</td>
+                            </tr>
+                            <tr>
+                                <td>30대 초반 (30세 ~ 34세)</td>
+                                <td>여성 특정 3종 수술 + 태아 특약 추가</td>
+                                <td>임신 전 가입 시 패널티 없이 완벽 인수</td>
+                                <td>45,000원 ~ 82,000원</td>
+                                <td>양호함 (예상 대비 합리적 조율 가능)</td>
+                            </tr>
+                            <tr>
+                                <td>30대 후반 (35세 ~ 39세)</td>
+                                <td>고령산모 합병증 특약 + 태아 중증 진단</td>
+                                <td>과거 시험관 시술 여부 등 추가 고지 필수</td>
+                                <td>75,000원 ~ 125,000원</td>
+                                <td>보통 (비용 절감 위한 설계 다변화 요구)</td>
+                            </tr>
+                            <tr>
+                                <td>40대 (40세 ~ 50세)</td>
+                                <td>여성암 전용 종합 보장 + 여성 호르몬 치료비</td>
+                                <td>자궁근종 등 수술 이력 보유 시 부담보 인수 가능</td>
+                                <td>68,000원 ~ 110,000원</td>
+                                <td>비교 분석 시 대다수 유입 및 연착륙 성공</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>비용 거품을 제거하고 합리적인 싼곳을 선별하는 팁</h3>
+                <p>
+                    많은 금융 소비자들이 각종 인터넷 커뮤니티인 <strong>디시</strong>인사이드 보험 갤러리나 자동차 전문 커뮤니티인 <strong>보배드림</strong>의 일상 정보 게시판, 그리고 성별 가리지 않고 높은 가입률을 기록하는 <strong>펨코(에펨코리아)</strong> 등에서 실제 가입자들의 생생한 **내돈내산 후기**나 비공식적인 가입 **좌표**, 일명 계약 **성지**라고 불리는 채널 정보를 교류하곤 합니다. 하지만 일부 영세 대리점이나 부당 대리인들이 미끼로 내세우는 호사스러운 **사은품** 보장, 과도한 약속의 일시적 **현금지원**, 불확실한 **지원금** 유혹, 그리고 모바일 주유 **상품**이나 고가의 가전제품 지급 등의 한시적 **이벤트** 조건만 바라보고 계약에 응하게 되면, 결국 불필요한 보장이 무작위로 끼워 맞춰져 평생 납부해야 할 월 부담금의 총량이 급격히 불어나는 무서운 부작용이 도사리고 있습니다.
+                </p>
+                <p>
+                    안전하고 무해한 경로를 찾아내는 확실한 **방법**은 바로 본인이 직접 모바일 스마트 기기를 활용하여 손보협회 공식 심의를 통과한 다이렉트 비교 **사이트**를 경유하는 것입니다. 최근 대중화된 대형 금융 통합 플랫폼인 **토스** 앱을 통해 개인의 보장 상태를 자가 점검하는 **하는법**도 인기를 모으고 있으며, 비대면 다이렉트 채널은 오프라인 설계사 배정 시 발생하는 중간 수수료 유통 마진이 고스란히 공제되므로 평균적으로 십 퍼센트에서 이십 퍼센트 내외의 가격 경감 **혜택**을 선사합니다. 이에 덧붙여, 최근의 지식 분석 생태계는 네이버 인물 분석이나 다차원 LLM 분석 모델인 **제미나이(Gemini)** 및 **챗지피티(ChatGPT)** 등 지능형 **AI** 플랫폼을 이용해 나만의 상태에 부합하는 개인 맞춤형 포트폴리오를 연산해 내는 실시간 **계산기** 솔루션까지 결합되어, 불필요한 영업 전화를 사전에 원천 차단하면서 냉정한 객관성을 담보한 상태에서 가입할 수 있는 완벽한 환경이 구축되어 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>유명 브랜드별 산부인과보험의 실질 장단점 비교</h2>
+                <p>
+                    국내 보험 시장에서 여성 및 임산부들의 두터운 지지를 얻고 있는 메이저 5대 손해보험사의 세부 특징과 장단점을 분석해 제공해 드립니다.
+                </p>
+                
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>현대해상 무배정 굿앤굿 어린이보험</h3>
+                        <p>
+                            태아보험 시장 점유율 면에서 독보적 지위를 점하고 있으며, 저체중아 출생 시 인큐베이터 비용 보전 및 선천성 이상 장해 수술비 특약의 보장 조건이 무척 탄탄합니다. 다만 선두 브랜드 프리미엄이 부과되어 타 경쟁사 다이렉트 대비 기본 산정 가격이 다소 높게 분포한다는 단점이 존재합니다.
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>삼성화재 다이렉트 마이헬스 파트너</h3>
+                        <p>
+                            업계 1위의 신속하고 정확한 민원 처리 및 압도적인 자본 안전성을 자랑하는 상품군입니다. 모바일 전용 앱과 어플을 활용한 비대면 실비 즉시 접수 시스템이 최고 수준으로 구축되어 있어, 산부인과 퇴원 즉시 사진 한 장으로 수 분 내에 환급금이 즉시 송금되는 전례 없는 만족도를 구현해 줍니다.
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>DB손해보험 참좋은 여성건강보험</h3>
+                        <p>
+                            여성 특정 암 및 자궁/난소 관련 10대 부인과 질환 수술 비용에 대해 업계 최대 수준의 한도 설정을 허용하는 공격적 마케팅이 장점입니다. 신규 가입 시 나이와 지병 경향성에 따른 보험료 인상폭이 평이하게 억제되어 장기 유지 유저들에게 큰 호평을 받고 있습니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2>자주 묻는 질문과 답변 (FAQ)</h2>
+                <div class="faq-container">
+                    
+                    <div class="faq-item active">
+                        <h3>Q1. 정기적으로 산부인과에 들러서 받은 자궁경부암 검사도 실손보험으로 돌려받나요? <span class="toggle-btn">+</span></h3>
+                        <div class="faq-content">
+                            단순 예방 목적이나 직장 및 지역 국가 건강검진으로 시행하는 정기적인 자궁경부암 검진은 치료를 위한 목적으로 판독되지 않기 때문에 실비 청구가 불가합니다. 그러나 생리 기간이 아님에도 출혈이 발견되는 증상(부정출혈)이나 극심한 생리통 등으로 인하여 전문의와 1대1 의학 상담 후 질병을 감별하기 위해 실시한 초음파 및 자궁경부 세포 검사는 질병 의심 소견에 해당하여 정상적인 급여 및 비급여 의료비 전액을 지급받을 수 있습니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Q2. 태아보험 특약에 정상 진입하려면 임신 확인 후 언제 가입해야 제일 유리할까요? <span class="toggle-btn">+</span></h3>
+                        <div class="faq-content">
+                            태아보험의 심장이라고 불리는 선천성 기형아 관련 수술비 및 신생아 입원 일당 등의 핵심 특별 약관들은 법적으로 임신 22주 6일까지만 인수가 허용됩니다. 22주가 단 하루라도 지나면 해당 필수 담보들은 평생 복구가 불가능한 단점이 초래되므로, 산부인과에서 최초 아기기집(임신낭)을 목격하고 심장 소리를 듣게 되는 임신 6주에서 12주차 사이에 가입을 서둘러 마무리 짓는 것이 산전 검사 결과 이상 소견으로 인한 가입 제한 리스크를 피하는 현명한 지름길입니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Q3. 최근에 유행하는 제왕절개 수술비용과 무통주사 등은 어떻게 청구가 이루어지나요? <span class="toggle-btn">+</span></h3>
+                        <div class="faq-content">
+                            기존의 구세대(1세대 ~ 3세대) 실손의료보험 약관에서는 임신 및 출산 과정에서 기인한 입원 의료비(KCD 분류 O코드)를 면책 사항으로 엄격히 누락시켰으나, 최근 출시 및 개편되고 있는 4세대 및 5세대 실비에서는 급여 본인부담금 부분에 한정하여 임신성 고혈압, 당뇨 및 제왕절개 시 발생하는 치료비 일부의 지급을 전향적으로 확대 수용하고 있습니다. 특히 비급여 처방 중 치료 보조용으로 분류되는 유착방지제나 극심한 고통 경감용 무통주사의 경우 의사의 필요 소견서가 첨부될 시 정해진 한도 내에서 정산이 수행되므로 필히 꼼꼼한 확인이 필요합니다.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Q4. 인터넷으로 직접 가입하는 다이렉트 방식과 대면 전문 대행사를 이용하는 방식의 실질적 비용 갭은 어떠한가요? <span class="toggle-btn">+</span></h3>
+                        <div class="faq-content">
+                            온라인 다이렉트 공식 몰은 가입자가 스스로 보장내역을 세팅하여 접수하므로 중간 관리 설계사에게 귀속되는 과도한 수당 및 유통 이익이 원천 차단됩니다. 이로 인하여 대면 영업 채널에 비견하여 매월 납부해야 하는 실질 단가가 적게는 10%에서 많게는 20% 가까이 싼곳으로 유지됩니다. 따라서 복잡한 특약에 대한 깊은 지식이 동반된다면 비대면 계산기 채널을 통하는 것이 최저가 효율을 쥐는 핵심 열쇠이며, 특약 구성이 혼란스러울 경우에는 당 대리점과 같은 전문 중개 센터의 맞춤 컨설팅을 경유해 조율하는 것이 효율적입니다.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" style="background-color: var(--bg-highlight);">
+            <div class="container">
+                <h2>공인된 신뢰성 있는 정보제공 및 외부 사이트 리스트</h2>
+                <div class="external-links">
+                    <p>가장 명확하고 법적으로 효력을 갖는 보장 규정 및 의학적 정보를 열람하기 위해 국가 유관 기관 및 전문 백과사전의 채널을 방문해 보시는 것을 권장합니다.</p>
+                    <ul>
+                        <li><a href="https://childntopbohuma.directreliable.com" target="_blank">산부인과보험 공식 다이렉트 비교분석 지원센터 (reliabledone.com 제공)</a></li>
+                        <li><a href="https://namu.wiki/w/%EC%8B%A4%EC%86%90%EC%9D%98%EB%A3%8C%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 실손의료보험 상세 개정사 및 일반 상식</a></li>
+                        <li><a href="https://www.nhis.or.kr" target="_blank">국민건강보험공단 - 요양급여 적용 기준 및 임신출산지원 정보</a></li>
+                        <li><a href="https://www.fss.or.kr" target="_blank">금융감독원 - 불완전 판매 및 손해보험 민원 조정 센터</a></li>
+                        <li><a href="https://www.knia.or.kr" target="_blank">손해보험협회 - 공식 공시실 및 세대별 실비 표준 약관 안내</a></li>
+                    </ul>
+                </div>
+
+                <div class="keyword-box">
+                    <h4>여성 소비자들이 많이 검색하는 연관 검색어 카테고리</h4>
+                    <ul class="keyword-list">
+                        <li>산부인과보험비교</li>
+                        <li>여성특정질병수술비</li>
+                        <li>임산부제왕절개실비청구</li>
+                        <li>태아보험인기순위비교</li>
+                        <li>비급여초음파실손승인기준</li>
+                        <li>자궁근종하이푸시술보험금</li>
+                        <li>다이렉트여성질환보험싼곳</li>
+                        <li>무해지환급형여성보험추천</li>
+                        <li>질염치료처방전질병코드</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+  
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const parent = item.parentElement;
+                
+                document.querySelectorAll('.faq-item').forEach(other => {
+                    if (other !== parent && other.classList.contains('active')) {
+                        other.classList.remove('active');
+                    }
+                });
+
+                parent.classList.toggle('active');
+            });
+        });
+
+        document.getElementById('insuranceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('applicant_name').value;
+            const birth = document.getElementById('birth_date').value;
+            const age = document.getElementById('age_range').value;
+            const status = document.getElementById('maternity_status').value;
+            const interest = document.getElementById('main_interest').value;
+            const contact = document.getElementById('manager_contact').value;
+
+            if(!name || !birth || !age || !status || !interest || !contact) {
+                alert('안전하고 정밀한 보장 분석을 완료하기 위해 필수 기재 사항을 입력해주십시오.');
+            } else {
+                alert('신청해주신 정보가 안전하게 데이터베이스로 접수되었습니다. 2026년 최신 손해보험사 요율 표준 및 고령 임신 리스크 기준에 발맞춘 개인 맞춤 포트폴리오를 지정해주신 휴대폰 연락처로 조속히 전송해 드리겠습니다.');
+            }
+        });
+    </script>
+  
